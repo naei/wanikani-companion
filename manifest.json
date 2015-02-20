@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "WaniKani Companion",
+  "version": "1.1.2",
+  "description": "Your favorite Japanese learning app at a click away.",
+  "browser_action": {
+    "default_title": "WaniKani Companion",
+    "default_icon": "/img/wanikani/icon.png",
+    "default_popup": "/html/home.html"
+  },
+  "icons": { 
+    "128": "/img/wanikani/icon.png" 
+  },
+  "permissions": [
+    "notifications", 
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.wanikani.com/*"],
+      "js": ["/js/web-content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "scripts": [
+      "/js/helper.js",
+      "/js/background.js"
+    ]
+  }
+}
