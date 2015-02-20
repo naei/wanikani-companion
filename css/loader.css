@@ -1,0 +1,14 @@
+body {
+  background-image: url('/img/wanikani/loader-background.jpg');
+  background-attachment: fixed;
+  overflow:hidden;
+}
+div#loader { 
+  position: fixed; 
+  left: 130px; 
+  top: 230px; 
+  z-index: 999; 
+  width: 100px; 
+  height: 100px; 
+  background: url('/img/loader.gif') no-repeat center center; 
+}

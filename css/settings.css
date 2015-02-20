@@ -1,0 +1,40 @@
+input, select {
+  font-family: inherit;
+  font-size: 15px;
+}
+ul li {
+  list-style-type: none;
+  line-height: 20px;
+}
+div.content {
+  font-size: 14px;
+}
+div.top {
+  background-color: #2c2c2c;
+  min-height: 30%;
+  height: 30%;
+  text-align: center;
+}
+div.top > div {
+  padding-top: 50px;
+}
+div.middle {
+  background-color: #333;
+	min-height: 60%;
+	height: 60%;
+}
+div.middle > ul {
+  padding-top: 15px;
+  margin: 0;
+}
+div.info > div {
+  padding-left:120px;
+  padding-top:130px;
+}
+div#loader { 
+  position: fixed; 
+  margin: auto;
+  width: 100px; 
+  height: 100px; 
+  background: url('/img/loader-tr.gif') no-repeat center center; 
+}

@@ -1,0 +1,88 @@
+div#profile {
+   background-color: #2c2c2c; 
+   min-height: 30%;
+   height: 30%;
+   font-size: 14px;
+}
+div#profile > div.avatar {
+   height: 100%;
+   float: left;
+}
+div#profile > div.avatar > img#gravatar {
+   height: 60%;
+   border-radius: 50%;
+   margin-top:10px;
+   margin-left:10px;
+   border: 13px solid #FFFFFF;
+}
+div#profile > div#userInfo {
+   height: 100%;
+   float: left;
+}
+div#profile > div#userInfo > div {
+   margin-top: 25px;
+   margin-left: 20px;
+}
+div#available {
+  min-height: 28%;
+  height: 28%;
+  text-align: center;
+   font-size: 14px;
+}
+div#available > a > div {
+  float: left;
+  width: 50%;
+  min-height: 100%; 
+}
+div#available > a > div#lessons {
+  background-color: #333;
+}
+div#available > a > div#reviews {
+  background-color: #303030;
+}
+div#available > a > div#lessons:hover, 
+div#available > a > div#reviews:hover {
+  background-color: #666;
+  transition:.5s;
+}
+div#available > a > div > span {
+  position: relative;
+  top: 15px;
+}
+div#srs {
+  min-height: 22%;
+  height: 22%;
+}
+div#srs > div {
+  float: left;
+  width: 20%;
+  min-height: 100%;
+  text-align: center;
+  vertical-align: text-top;
+  font-size: 17px;
+}
+div#srs > div > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 50px;
+}
+div#srs > div > img:hover {
+  transform:rotate(-10deg);
+}
+div#srs > div#apprentice {
+  background-color: #F100A1;
+}
+div#srs > div#guru {
+  background-color: #A035BA;
+}
+div#srs > div#master {
+  background-color: #4362DF;
+}
+div#srs > div#enlighten {
+  background-color: #00A1F2;
+}
+div#srs > div#burned {
+  background-color: #4D4D4D;
+}
