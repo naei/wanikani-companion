@@ -14,7 +14,7 @@ window.onload = function() {
 	  			setWkUserData(new WkUserData());
 	  		} else {
 	  			// get the existing user data from Chrome sync
-	  			localStorage.wkUserData = obj.wkUserData;
+	  			localStorage.wkUserData = JSON.stringify(obj.wkUserData);
 	  		}
 	  		loopRequestUserData();
 		});

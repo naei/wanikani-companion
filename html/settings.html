@@ -28,8 +28,7 @@
   		  <ul>
   		  	<li>User API key <span class="error"> // This key is not valid</span></li>
   		 		<li><input id="apiKey" type="text" size="30"/></li>
-  		 		<li><br/></li>
-  		 		<li>Data refresh interval</li>
+  		 		<li class="spaced">Data refresh interval</li>
   		 		<li>
   		 			<select id="refreshInterval">
   				 		<option value="300000"> 5mn </option>
@@ -39,8 +38,7 @@
   				 		<option value="7200000"> 2h </option>
   		 			</select>
   		 		</li>
-  		 		<li><br/></li>
-  		 		<li>Time before the notifications vanish</li>
+  		 		<li class="spaced">Notifications lifetime</li>
   		 		<li>
   		 			<select id="notifLifetime">
               <option value="0"> no notifications </option>
@@ -52,8 +50,12 @@
   				 		<option value="-1"> no limit </option>
   		 			</select>
   		 		</li>
-          <li><br/></li>
-          <li><input id="inAppNav" type="checkbox"> Use in-app navigation</li>
+          <li class="spaced">
+            <input id="inAppNav" type="checkbox"> Use in-app navigation
+          </li>
+          <li class="spaced">
+            <input id="expandInfoPanel" type="checkbox"> Auto-expand "item info" panel
+          </li>
   		 	</ul>
   	 	</div>
 

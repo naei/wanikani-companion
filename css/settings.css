@@ -6,6 +6,9 @@ ul li {
   list-style-type: none;
   line-height: 20px;
 }
+li.spaced {
+  padding-top:12px;
+}
 div.content {
   font-size: 14px;
 }
