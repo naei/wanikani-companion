@@ -5,6 +5,7 @@ function WkUserData(){
   this.refreshInterval = 900000;
   this.notifLifetime = 10000;
   this.inAppNavigation = true;
+  this.expandInfoPanel = true;
 
   this.username = "Mysterious unknown";
   this.gravatar = "";
@@ -24,8 +25,8 @@ function setWkUserData(wkUserData, callback){
 
   // save the data into the local storage
   localStorage.wkUserData = JSON.stringify(wkUserData);
-  // ... and sync. it with Chrome account
-  chrome.storage.sync.set({'wkUserData': localStorage.wkUserData});
+  // ... and sync it with the current Chrome account
+  chrome.storage.sync.set({'wkUserData': wkUserData});
 
   if (callback) callback();
 }

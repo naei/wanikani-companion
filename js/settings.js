@@ -7,6 +7,7 @@ window.onload = function() {
 	document.getElementById('refreshInterval').value = wkUserData.refreshInterval;
 	document.getElementById('notifLifetime').value = wkUserData.notifLifetime;
 	document.getElementById('inAppNav').checked = wkUserData.inAppNavigation == true ? true : false;
+	document.getElementById('expandInfoPanel').checked = wkUserData.expandInfoPanel == true ? true : false;
 
 	// action when settings are saved
 	document.getElementById('save').onclick = function() {
@@ -22,6 +23,8 @@ window.onload = function() {
 			wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
 			wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
 			wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
+			wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
+
 			setWkUserData(wkUserData, function() {
 				window.location.replace("/html/home.html");
 			});
@@ -44,6 +47,7 @@ window.onload = function() {
 			  		wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
 					wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
 					wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
+					wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
 
 					setWkUserData(wkUserData, function() {
 						requestUserData(false, function(){
