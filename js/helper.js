@@ -6,6 +6,7 @@ function WkUserData(){
   this.notifLifetime = 10000;
   this.inAppNavigation = true;
   this.expandInfoPanel = true;
+  this.notifSound = false;
 
   this.username = "Mysterious unknown";
   this.gravatar = "";
@@ -90,11 +91,19 @@ function requestUserData(notify, callback) {
       
       // display desktop notifications
       if (notify === true && currentData.refreshInterval != 0){
+        var notified = false;
         if (nbReviews > 0 && nbReviews != currentData.nbReviews) {
-            createNotification("You have " + nbReviews +" reviews available.", "https://www.wanikani.com/review", "reviews");
+          createNotification("You have " + nbReviews +" reviews available.", "https://www.wanikani.com/review", "reviews");
+          notified = true;
         }
         if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
           createNotification("You have " + nbLessons +" lessons available.", "https://www.wanikani.com/lesson", "lessons");
+          notified = true;
+        }
+        // play notification sound
+        if (notified === true && currentData.notifSound === true){
+          var sound = new Audio('/snd/notification.mp3');
+          sound.play();
         }
       }
 
