@@ -6,6 +6,7 @@ window.onload = function() {
 	document.getElementById('apiKey').value = wkUserData.userPublicKey;
 	document.getElementById('refreshInterval').value = wkUserData.refreshInterval;
 	document.getElementById('notifLifetime').value = wkUserData.notifLifetime;
+	document.getElementById('notifSound').checked = wkUserData.notifSound == true ? true : false;
 	document.getElementById('inAppNav').checked = wkUserData.inAppNavigation == true ? true : false;
 	document.getElementById('expandInfoPanel').checked = wkUserData.expandInfoPanel == true ? true : false;
 
@@ -22,6 +23,7 @@ window.onload = function() {
 
 			wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
 			wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
+			wkUserData.notifSound = (document.getElementById('notifSound').checked) ? true : false;
 			wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
 			wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
 
@@ -46,6 +48,7 @@ window.onload = function() {
 					wkUserData.userPublicKey = document.getElementById('apiKey').value;
 			  		wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
 					wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
+					wkUserData.notifSound = (document.getElementById('notifSound').checked) ? true : false;
 					wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
 					wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
 
