@@ -9,6 +9,7 @@ window.onload = function() {
 	document.getElementById('notifSound').checked = wkUserData.notifSound == true ? true : false;
 	document.getElementById('inAppNav').checked = wkUserData.inAppNavigation == true ? true : false;
 	document.getElementById('expandInfoPanel').checked = wkUserData.expandInfoPanel == true ? true : false;
+	document.getElementById('show0Badge').checked = wkUserData.show0Badge == true ? true : false;
 
 	// action when settings are saved
 	document.getElementById('save').onclick = function() {
@@ -26,6 +27,7 @@ window.onload = function() {
 			wkUserData.notifSound = (document.getElementById('notifSound').checked) ? true : false;
 			wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
 			wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
+			wkUserData.show0Badge = (document.getElementById('show0Badge').checked) ? true : false;
 
 			setWkUserData(wkUserData, function() {
 				window.location.replace("/html/home.html");
@@ -51,6 +53,7 @@ window.onload = function() {
 					wkUserData.notifSound = (document.getElementById('notifSound').checked) ? true : false;
 					wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
 					wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
+					wkUserData.show0Badge = (document.getElementById('show0Badge').checked) ? true : false;
 
 					setWkUserData(wkUserData, function() {
 						requestUserData(false, function(){
