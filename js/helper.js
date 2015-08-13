@@ -6,7 +6,7 @@ function WkUserData(){
   this.notifLifetime = 10000;
   this.inAppNavigation = true;
   this.expandInfoPanel = true;
-  this.show0Badge = false;
+  this.hide0Badge = false;
   this.notifSound = false;
 
   this.username = "Mysterious unknown";
@@ -110,7 +110,7 @@ function requestUserData(notify, callback) {
 
       // update badge text and title
       var total = nbReviews+nbLessons;
-      if (total == 0 && !currentData.show0Badge)
+      if (total == 0 && currentData.hide0Badge)
         chrome.browserAction.setBadgeText({text:""});
       else
         chrome.browserAction.setBadgeText({text:total.toString()});

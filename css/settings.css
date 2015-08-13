@@ -23,8 +23,6 @@ div.top > div {
 }
 div.middle {
   background-color: #333;
-	min-height: 60%;
-	height: 80%;
 }
 div.middle > ul {
   padding-top: 15px;
