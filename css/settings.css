@@ -7,7 +7,7 @@ ul li {
   line-height: 20px;
 }
 li.spaced {
-  padding-top:14px;
+  padding-top:5px;
 }
 div.content {
   font-size: 14px;
@@ -23,8 +23,8 @@ div.top > div {
 }
 div.middle {
   background-color: #333;
-	min-height: 60%;
-	height: 70%;
+  min-height: 60%;
+  height: 70%;
 }
 div.middle > ul {
   padding-top: 15px;
@@ -34,10 +34,10 @@ div.info > div {
   padding-left:120px;
   padding-top:130px;
 }
-div#loader { 
-  position: fixed; 
+div#loader {
+  position: fixed;
   margin: auto;
-  width: 100px; 
-  height: 100px; 
-  background: url('/img/loader-tr.gif') no-repeat center center; 
+  width: 100px;
+  height: 100px;
+  background: url('/img/loader-tr.gif') no-repeat center center;
 }
