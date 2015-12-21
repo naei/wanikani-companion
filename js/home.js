@@ -1,5 +1,5 @@
 window.onload = function() {
-	
+
 	var wkUserData = JSON.parse(localStorage.wkUserData);
 	fullfillUserData();
 
@@ -61,6 +61,7 @@ window.onload = function() {
 		document.getElementById('title').innerHTML = wkUserData.title;
 		document.getElementById('nbLessons').innerHTML = wkUserData.nbLessons;
 		document.getElementById('nbReviews').innerHTML = wkUserData.nbReviews;
+		document.getElementById('reviewTime').innerHTML = wkUserData.nextReview;
 		document.getElementById('srsNbApprentice').innerHTML = wkUserData.srsNbApprentice;
 		document.getElementById('srsNbGuru').innerHTML = wkUserData.srsNbGuru;
 		document.getElementById('srsNbMaster').innerHTML = wkUserData.srsNbMaster;
