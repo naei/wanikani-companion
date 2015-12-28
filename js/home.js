@@ -67,5 +67,15 @@ window.onload = function() {
 		document.getElementById('srsNbMaster').innerHTML = wkUserData.srsNbMaster;
 		document.getElementById('srsNbEnlighten').innerHTML = wkUserData.srsNbEnlighten;
 		document.getElementById('srsNbBurned').innerHTML = wkUserData.srsNbBurned;
+
+
+		if (wkUserData.nbReviews > 0){
+			document.querySelector("#nextReviews").style.display = 'none';
+			document.querySelector("#reviews").style.display = 'block';
+		} else {
+			// if there is no review, display when will be the next one
+			document.querySelector("#reviews").style.display = 'none';
+			document.querySelector("#nextReviews").style.display = 'block';    	
+		}
 	}
 }

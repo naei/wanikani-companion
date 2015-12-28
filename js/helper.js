@@ -51,11 +51,8 @@ function getApiData(publicKey, type, callback) {
 }
 
 function parseRemainingTime(reviewDate) {
-  // for some reason the api result is too short to be a proper JS date? weird.
-  reviewDate *= 1000;
   var now = moment();
   var review = moment(new Date(reviewDate));
-
   return review.from(now);
 }
 
@@ -72,7 +69,8 @@ function updateWkUserData(jsonUserData, type, callback){
   if (type == "study-queue") {
     wkUserData.nbLessons = jsonUserData.requested_information.lessons_available;
     wkUserData.nbReviews = jsonUserData.requested_information.reviews_available;
-    wkUserData.nextReview = parseRemainingTime(jsonUserData.requested_information.next_review_date);
+    wkUserData.nextReview = parseRemainingTime(jsonUserData.requested_information.next_review_date*1000);
+
   } else if (type == "srs-distribution") {
     wkUserData.srsNbApprentice = jsonUserData.requested_information.apprentice.total;
     wkUserData.srsNbGuru = jsonUserData.requested_information.guru.total;
