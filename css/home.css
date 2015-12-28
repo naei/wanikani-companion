@@ -11,8 +11,8 @@ div#profile > div.avatar {
 div#profile > div.avatar > img#gravatar {
    height: 52%;
    border-radius: 50%;
-   margin-top:12px;
-   margin-left:20px;
+   margin-top: 18px;
+   margin-left: 20px;
    border: 13px solid #FFFFFF;
 }
 div#profile > div#userInfo {
@@ -20,7 +20,7 @@ div#profile > div#userInfo {
    float: left;
 }
 div#profile > div#userInfo > div {
-   margin-top: 25px;
+   margin-top: 33px;
    margin-left: 20px;
 }
 div#available {
