@@ -50,6 +50,12 @@ function getApiData(publicKey, type, callback) {
   xhr.send();
 }
 
+function parseRemainingTime(reviewDate) {
+  var now = moment();
+  var review = moment(new Date(reviewDate));
+  return review.from(now);
+}
+
 // update the local user data from the JSON data returned from the WaniKani API
 function updateWkUserData(jsonUserData, type, callback){
 
@@ -63,6 +69,8 @@ function updateWkUserData(jsonUserData, type, callback){
   if (type == "study-queue") {
     wkUserData.nbLessons = jsonUserData.requested_information.lessons_available;
     wkUserData.nbReviews = jsonUserData.requested_information.reviews_available;
+    wkUserData.nextReview = parseRemainingTime(jsonUserData.requested_information.next_review_date*1000);
+
   } else if (type == "srs-distribution") {
     wkUserData.srsNbApprentice = jsonUserData.requested_information.apprentice.total;
     wkUserData.srsNbGuru = jsonUserData.requested_information.guru.total;
@@ -76,11 +84,11 @@ function updateWkUserData(jsonUserData, type, callback){
   if (callback) callback();
 }
 
-// request the data to Wanikani API, display notifications and save local data 
+// request the data to Wanikani API, display notifications and save local data
 function requestUserData(notify, callback) {
 
   var currentData = getWkUserData();
-  
+
   // update data and display notifications
   if (currentData.userPublicKey != "") {
 
@@ -89,7 +97,7 @@ function requestUserData(notify, callback) {
 
       var nbReviews = userData.requested_information.reviews_available;
       var nbLessons = userData.requested_information.lessons_available;
-      
+
       // display desktop notifications
       if (notify === true && currentData.refreshInterval != 0){
         var notified = false;
@@ -115,7 +123,7 @@ function requestUserData(notify, callback) {
       else
         chrome.browserAction.setBadgeText({text:total.toString()});
       chrome.browserAction.setTitle({title: "WaniKani Companion\n" + "Lesson(s): " + nbLessons + "\n" + "Review(s): " + nbReviews});
-      
+
       // save study data
       updateWkUserData(userData, "study-queue", function(){
         // get the srs distribution data
@@ -125,7 +133,7 @@ function requestUserData(notify, callback) {
         });
       });
     });
-  } 
+  }
 }
 
 // create a HTML notification
@@ -140,7 +148,7 @@ function createNotification(body, url, tag){
   notification.onclick = function() {
     window.open(url);
   }
-  
+
   // vanish the notifications after [notifLifetime] ms
   // if [notifLifetime] == -1, the notification stay until the user close it
   if (getWkUserData().notifLifetime != -1) {

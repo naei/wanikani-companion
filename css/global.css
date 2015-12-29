@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC);
 body {
-  height: 420px;
+  height: 460px;
   width: 350px;
   margin: 0;
   color: #ffffff;
@@ -19,7 +19,7 @@ h3 {
   display: inline;
 }
 div.info {
-  background-color: #000; 
+  background-color: #000;
   height: 90%;
   width: 100%;
   z-index: 999;
@@ -30,6 +30,8 @@ div.info {
 }
 div.info > div {
   padding: 30px 30px 0px 30px;
+  font-weight: 700;
+  margin-top: 40px;
 }
 div.content {
   height: 100%;
@@ -46,7 +48,7 @@ div.linkPanel:hover {
 }
 div.linkPanel > span {
   position: relative;
-  top: 13px;
+  top: 16px;
   font-size: 14px;
 }
 .error {

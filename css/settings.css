@@ -2,6 +2,9 @@ input, select {
   font-family: inherit;
   font-size: 15px;
 }
+input#apiKey {
+  width: 235px;
+}
 ul li {
   list-style-type: none;
   line-height: 20px;
@@ -23,11 +26,11 @@ div.top > div {
 }
 div.middle {
   background-color: #333;
-  min-height: 60%;
+  min-height: 70%;
   height: 70%;
 }
 div.middle > ul {
-  padding-top: 15px;
+  padding-top: 20px;
   margin: 0;
 }
 div.info > div {
