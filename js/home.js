@@ -1,5 +1,5 @@
 window.onload = function() {
-	
+
 	var wkUserData = JSON.parse(localStorage.wkUserData);
 	fullfillUserData();
 
@@ -61,10 +61,21 @@ window.onload = function() {
 		document.getElementById('title').innerHTML = wkUserData.title;
 		document.getElementById('nbLessons').innerHTML = wkUserData.nbLessons;
 		document.getElementById('nbReviews').innerHTML = wkUserData.nbReviews;
+		document.getElementById('reviewTime').innerHTML = wkUserData.nextReview;
 		document.getElementById('srsNbApprentice').innerHTML = wkUserData.srsNbApprentice;
 		document.getElementById('srsNbGuru').innerHTML = wkUserData.srsNbGuru;
 		document.getElementById('srsNbMaster').innerHTML = wkUserData.srsNbMaster;
 		document.getElementById('srsNbEnlighten').innerHTML = wkUserData.srsNbEnlighten;
 		document.getElementById('srsNbBurned').innerHTML = wkUserData.srsNbBurned;
+
+
+		if (wkUserData.nbReviews > 0){
+			document.querySelector("#nextReviews").style.display = 'none';
+			document.querySelector("#reviews").style.display = 'block';
+		} else {
+			// if there is no review, display when will be the next one
+			document.querySelector("#reviews").style.display = 'none';
+			document.querySelector("#nextReviews").style.display = 'block';    	
+		}
 	}
 }

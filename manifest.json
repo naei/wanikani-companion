@@ -27,6 +27,7 @@
   ],
   "background": {
     "scripts": [
+      "/js/lib/moment.min.js",
       "/js/helper.js",
       "/js/background.js"
     ]

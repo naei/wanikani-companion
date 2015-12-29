@@ -6,7 +6,7 @@ WaniKani Companion is an extension who integrate all of your WaniKani environnem
 
 ## Features
 
-* Profile overview: see your profile summary at a glance (name, sect, level, lessons, reviews and SRS progression).
+* Profile overview: see your profile summary at a glance (name, sect, level, lessons, reviews, upcoming reviews countdown, and SRS progression).
 * Badge notifications: be notified of your available lessons and reviews on the extension's icon.
 * Desktop notifications: be notified of your lessons and reviews directly on your desktop.
 * Chrome sync integration: the user settings are saved across all your Chrome's instances.
