@@ -45,11 +45,12 @@ div#available > div#nextReviews {
   display: none;
 }
 div#available > div#nextReviews > div {
-  width: 55%;
-  text-align: center;
-  padding: 0px 22%;
+  width: 60%;
+  text-align: left;
+  padding: 0px 20%;
   position: relative;
   top: 37px;
+  line-height: 1.4;
 }
 div#available > a > div#lessons:hover,
 div#available > a > div#reviews:hover,
