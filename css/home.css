@@ -52,6 +52,9 @@ div#available > div#nextReviews > div {
   top: 37px;
   line-height: 1.4;
 }
+div#available > div#nextReviews > div:last-child {
+  width: 58%;
+}
 div#available > a > div#lessons:hover,
 div#available > a > div#reviews:hover,
 div#available > div#nextReviews:hover {
