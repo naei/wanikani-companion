@@ -48,6 +48,7 @@ function getApiData(publicKey, type, callback) {
   xhr.send();
 }
 
+// get a human readable value of the remaning time before the [reviewDate]
 function parseRemainingTime(reviewDate) {
   if (reviewDate){
     var now = moment();
@@ -107,6 +108,7 @@ function requestUserData(notify, callback) {
             createNotification("You have " + nbReviews +" reviews available.", "https://www.wanikani.com/review", "reviews");
             notified = true;
           }
+          //if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
           if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
             createNotification("You have " + nbLessons +" lessons available.", "https://www.wanikani.com/lesson", "lessons");
             notified = true;
