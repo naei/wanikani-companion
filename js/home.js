@@ -68,14 +68,14 @@ window.onload = function() {
 		document.getElementById('srsNbEnlighten').innerHTML = wkUserData.srsNbEnlighten;
 		document.getElementById('srsNbBurned').innerHTML = wkUserData.srsNbBurned;
 
-
-		if (wkUserData.nbReviews > 0){
-			document.querySelector("#nextReviews").style.display = 'none';
+		if (wkUserData.nbReviews > 0 || !wkUserData.nextReview){
+			// the user has reviews, or does not have next reviews
 			document.querySelector("#reviews").style.display = 'block';
+			document.querySelector("#nextReviews").style.display = 'none';
 		} else {
-			// if there is no review, display when will be the next one
+			// the user does not have available reviews, display when will be the next one
 			document.querySelector("#reviews").style.display = 'none';
-			document.querySelector("#nextReviews").style.display = 'block';    	
+			document.querySelector("#nextReviews").style.display = 'block';
 		}
 	}
 }
