@@ -5,7 +5,7 @@ window.onload = function() {
   // initialize the badge color
   chrome.browserAction.setBadgeBackgroundColor({color:'#ff00aa'}); 
 
-  // check is there is a Chrome sync value
+  // check that there is a Chrome sync value
   chrome.storage.sync.get("wkUserData", function (obj) {
     if (obj.wkUserData === undefined){
       if (localStorage.wkUserData === undefined){

@@ -43,7 +43,8 @@ window.onload = function() {
           document.querySelector(".error").style.display = 'inline';
           document.querySelector(".info").style.display = 'none';
 
-        } else { // the key is valid
+        // the key is valid
+        } else { 
           wkUserData.userPublicKey = document.getElementById('apiKey').value;
           wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
           wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
