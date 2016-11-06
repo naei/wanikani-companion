@@ -1,6 +1,5 @@
 // initialize the local object for user data
 function WkUserData(){
-
   this.userPublicKey = "";
   this.refreshInterval = 900000;
   this.notifLifetime = 10000;
@@ -9,7 +8,7 @@ function WkUserData(){
   this.hide0Badge = false;
   this.notifSound = false;
 
-  this.username = "Mysterious unknown";
+  this.username = "Mysterious Unknown";
   this.gravatar = "";
   this.level = "42";
   this.title = "Legend";
@@ -24,7 +23,6 @@ function WkUserData(){
 
 // save the local user data
 function setWkUserData(wkUserData, callback){
-
   // save the data into the local storage
   localStorage.wkUserData = JSON.stringify(wkUserData);
   // ... and sync it with the current Chrome account
@@ -51,7 +49,6 @@ function getApiData(publicKey, type, callback) {
 }
 
 function parseRemainingTime(reviewDate) {
-
   if (reviewDate){
     var now = moment();
     var review = moment(new Date(reviewDate*1000));
@@ -75,7 +72,7 @@ function updateWkUserData(jsonUserData, type, callback){
     wkUserData.nbLessons = jsonUserData.requested_information.lessons_available;
     wkUserData.nbReviews = jsonUserData.requested_information.reviews_available;
     wkUserData.nextReview = parseRemainingTime(jsonUserData.requested_information.next_review_date);
-    
+
   } else if (type == "srs-distribution") {
     wkUserData.srsNbApprentice = jsonUserData.requested_information.apprentice.total;
     wkUserData.srsNbGuru = jsonUserData.requested_information.guru.total;
@@ -105,30 +102,31 @@ function requestUserData(notify, callback) {
 
       // display desktop notifications
       if (notify === true && currentData.refreshInterval != 0){
-        var notified = false;
-        if (nbReviews > 0 && nbReviews != currentData.nbReviews) {
-          createNotification("You have " + nbReviews +" reviews available.", "https://www.wanikani.com/review", "reviews");
-          notified = true;
-        }
-        if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
-          createNotification("You have " + nbLessons +" lessons available.", "https://www.wanikani.com/lesson", "lessons");
-          notified = true;
-        }
-        // play notification sound
-        if (notified === true && currentData.notifSound === true){
-          var sound = new Audio('/snd/notification.mp3');
-          sound.play();
-        }
+          var notified = false;
+          if (nbReviews > 0 && nbReviews != currentData.nbReviews) {
+            createNotification("You have " + nbReviews +" reviews available.", "https://www.wanikani.com/review", "reviews");
+            notified = true;
+          }
+          if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
+            createNotification("You have " + nbLessons +" lessons available.", "https://www.wanikani.com/lesson", "lessons");
+            notified = true;
+          }
+          // play notification sound
+          if (notified === true && currentData.notifSound === true){
+            var sound = new Audio('/snd/notification.mp3');
+            sound.play();
+          }
       }
 
       // update badge text and title
       var total = nbReviews+nbLessons;
-      if (total == 0 && currentData.hide0Badge)
+      if (total == 0 && currentData.hide0Badge) {
         chrome.browserAction.setBadgeText({text:""});
-      else
+      } else {
         chrome.browserAction.setBadgeText({text:total.toString()});
+      }
       chrome.browserAction.setTitle({title: "WaniKani Companion\n" + "Lesson(s): " + nbLessons + "\n" + "Review(s): " + nbReviews});
-
+      
       // save study data
       updateWkUserData(userData, "study-queue", function(){
         // get the srs distribution data
@@ -137,6 +135,7 @@ function requestUserData(notify, callback) {
           updateWkUserData(userData, "srs-distribution", function(){ if (callback) callback(); });
         });
       });
+
     });
   }
 }
