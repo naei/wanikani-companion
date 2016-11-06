@@ -51,9 +51,14 @@ function getApiData(publicKey, type, callback) {
 }
 
 function parseRemainingTime(reviewDate) {
-  var now = moment();
-  var review = moment(new Date(reviewDate));
-  return review.from(now);
+
+  if (reviewDate){
+    var now = moment();
+    var review = moment(new Date(reviewDate*1000));
+    return review.from(now);
+  }
+  // [reviewDate] is null when the user hasn't done any lesson yet
+  return null;
 }
 
 // update the local user data from the JSON data returned from the WaniKani API
@@ -69,8 +74,8 @@ function updateWkUserData(jsonUserData, type, callback){
   if (type == "study-queue") {
     wkUserData.nbLessons = jsonUserData.requested_information.lessons_available;
     wkUserData.nbReviews = jsonUserData.requested_information.reviews_available;
-    wkUserData.nextReview = parseRemainingTime(jsonUserData.requested_information.next_review_date*1000);
-
+    wkUserData.nextReview = parseRemainingTime(jsonUserData.requested_information.next_review_date);
+    
   } else if (type == "srs-distribution") {
     wkUserData.srsNbApprentice = jsonUserData.requested_information.apprentice.total;
     wkUserData.srsNbGuru = jsonUserData.requested_information.guru.total;
