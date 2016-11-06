@@ -14,13 +14,13 @@ window.onload = function() {
     });
   }
 
-  // display gravatar image only if it exist
+  // display Gravatar image (if exist)
   var xhr = new XMLHttpRequest();
   xhr.open("GET", 'http://www.gravatar.com/avatar/' + wkUserData.gravatar + '?d=404', true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4) {
       if (xhr.status == 200) {
-         document.getElementById('gravatar').src = 'http://www.gravatar.com/avatar/' + wkUserData.gravatar;
+        document.getElementById('gravatar').src = 'http://www.gravatar.com/avatar/' + wkUserData.gravatar;
       }
     }
   }
