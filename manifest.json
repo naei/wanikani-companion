@@ -12,8 +12,11 @@
     "128": "/img/wanikani/icon.png"
   },
   "permissions": [
+    "*://*.wanikani.com/",
     "notifications",
-    "storage"
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
   ],
   "content_scripts": [
     {
