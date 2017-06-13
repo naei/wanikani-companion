@@ -6,6 +6,13 @@ window.onload = function() {
   // display info message if the user is coming for the first time
   if (wkUserData.userPublicKey === undefined || wkUserData.userPublicKey == ""){
     document.querySelector(".info").style.display = 'inline';
+    if (window.location.href.includes('wanikani.com/settings/account')) {
+      alert("Please enter your API Key.")
+    } else {
+      alert("Redirecting to WaniKani...")
+      window.open('https://www.wanikani.com/settings/account/#public-api-key',
+      'Window');
+    }
   } else {
      // reload user data
     requestUserData(false, function() {
