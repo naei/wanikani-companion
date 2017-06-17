@@ -105,7 +105,7 @@ function requestUserData(notify, callback) {
       if (notify === true && currentData.refreshInterval != 0){
           var notified = false;
           if (nbReviews > 0 && nbReviews != currentData.nbReviews) {
-            if (currentData.nbReviews === 1) {
+            if (nbReviews === 1) {
             // special case of a single review
               createNotification("You have " + nbReviews +" review available.", "https://www.wanikani.com/review", "reviews");
               notified = true;
