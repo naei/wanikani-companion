@@ -102,15 +102,17 @@ function requestUserData(notify, callback) {
       var nbLessons = userData.requested_information.lessons_available;
 
       // display desktop notifications
-      if (notify === true && currentData.refreshInterval != 0){
+      if (notify === true && currentData.refreshInterval != 0) {
           var notified = false;
+          var reviewTxt = (nbReviews > 1) ? "reviews" : "review";
+          var lessonTxt = (nbLessons > 1) ? "lessons" : "lessons";
           if (nbReviews > 0 && nbReviews != currentData.nbReviews) {
             if (nbReviews === 1) {
             // special case of a single review
-              createNotification("You have " + nbReviews +" review available.", "https://www.wanikani.com/review", "reviews");
+              createNotification("You have " + nbReviews + " " + reviewTxt + " available.", "https://www.wanikani.com/review", "reviews");
               notified = true;
             } else {
-              createNotification("You have " + nbReviews +" reviews available.", "https://www.wanikani.com/review", "reviews");
+              createNotification("You have " + nbReviews + " "+ reviewTxt + " available.", "https://www.wanikani.com/review", "reviews");
               notified = true;
             }
           }
@@ -118,10 +120,10 @@ function requestUserData(notify, callback) {
           if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
           // special case of a single lesson
             if (currentData.nbLessons === 1) {
-              createNotification("You have " + nbLessons + " lesson available.", "https://www.wanikani.com/lesson", "lessons");
+              createNotification("You have " + nbLessons + " " + lessonTxt + " available.", "https://www.wanikani.com/lesson", "lessons");
               notified = true;
             } else {
-              createNotification("You have " + nbLessons +" lessons available.", "https://www.wanikani.com/lesson", "lessons");
+              createNotification("You have " + nbLessons + " " + lessonTxt + " available.", "https://www.wanikani.com/lesson", "lessons");
               notified = true;
             }
           }
