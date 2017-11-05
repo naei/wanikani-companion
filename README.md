@@ -3,7 +3,7 @@
 [![Chrome Web Store URL](https://img.shields.io/chrome-web-store/v/plfjbbakjphlkdpcdpodaedhicoaloph.svg?style=flat-square)](https://chrome.google.com/webstore/detail/wanikani-companion/plfjbbakjphlkdpcdpodaedhicoaloph)
 [![License](https://img.shields.io/github/license/naei/wanikani-companion.svg?style=flat-square)](LICENSE)
 
-WaniKani Companion is an extension who integrate all of your WaniKani environnement in your Chrome browser.
+WaniKani Companion is an extension that integrates your WaniKani environment into your Chrome browser.
 
 ![WaniKani Companion](https://lh6.googleusercontent.com/XPRgWP5wxDrRvQgA_tL2vI4QBTnyegM5tcAvzZaEzPuYb57-2-BtqTFyhoY0u8PUjpa5HTcLxA=s640-h400-e365-rw)
 
@@ -18,7 +18,7 @@ WaniKani Companion is an extension who integrate all of your WaniKani environnem
 
 ## Installation
 
-If you just want to use the latest version of WaniKani Companion on your Chrome browser you can directly install the extension from the Chrome Web Store [here](https://chrome.google.com/webstore/detail/wanikani-companion/plfjbbakjphlkdpcdpodaedhicoaloph).
+If you just want to use the latest version of WaniKani Companion on your Chrome browser, you can directly install the extension from the Chrome Web Store [here](https://chrome.google.com/webstore/detail/wanikani-companion/plfjbbakjphlkdpcdpodaedhicoaloph).
 
 Otherwise, if you want to load the extension from the source code:
 
@@ -33,7 +33,7 @@ For more details about Chrome extensions, WaniKani and development for WaniKani,
 - the [official documentation](https://developer.chrome.com/extensions) for Chrome extensions,
 - the WaniKani [website](https://www.wanikani.com) and [API documentation](https://www.wanikani.com/api).
 
-/!\ This app is integrating a frame of the official HTTPS WaniKani website (https://www.wanikani.com); Using another WaniKani extension at the same time may affect your experience.
+/!\ This app integrates a frame of the official HTTPS WaniKani website (https://www.wanikani.com); using another WaniKani extension at the same time may affect your experience.
 
 ## Notice
 

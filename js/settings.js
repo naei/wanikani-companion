@@ -11,6 +11,11 @@ window.onload = function() {
   document.getElementById('expandInfoPanel').checked = wkUserData.expandInfoPanel == true ? true : false;
   document.getElementById('hide0Badge').checked = wkUserData.hide0Badge == true ? true : false;
 
+  // action when LINK to WaniKani is clicked
+  document.getElementById('link').onclick = function() {
+    window.open('https://www.wanikani.com/settings/account#public-api-key')
+  }
+
   // action when settings are saved
   document.getElementById('save').onclick = function() {
 
@@ -32,11 +37,11 @@ window.onload = function() {
       setWkUserData(wkUserData, function() {
         window.location.replace("/html/home.html");
       });
-    
+
     // a new key has been entered: save
     } else if (key != wkUserData.userPublicKey){
-        
-      getApiData(key, "user-information", function(obj){ 
+
+      getApiData(key, "user-information", function(obj){
 
         // the key is not valid
         if (obj.user_information === undefined){
@@ -44,7 +49,7 @@ window.onload = function() {
           document.querySelector(".info").style.display = 'none';
 
         // the key is valid
-        } else { 
+        } else {
           wkUserData.userPublicKey = document.getElementById('apiKey').value;
           wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
           wkUserData.notifLifetime = document.getElementById('notifLifetime').value;

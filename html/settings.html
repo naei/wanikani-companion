@@ -26,33 +26,33 @@
 
       <div class="middle">
         <ul>
-          <li>User API key <span class="error"> // This key is not valid</span></li>
+          <li>User API v1 key (<a id="link" href="">Link</a>) <span class="error"> // This key is not valid</span></li>
           <li><input id="apiKey" type="text" size="30"/></li>
           <li class="spaced">Data refresh interval</li>
           <li>
             <select id="refreshInterval">
-              <option value="300000"> 5mn </option>
-              <option value="900000"> 15mn </option>
-              <option value="1800000"> 30mn </option>
-              <option value="3600000"> 1h </option>
-              <option value="7200000"> 2h </option>
+              <option value="300000"> 5min </option>
+              <option value="900000"> 15min </option>
+              <option value="1800000"> 30min </option>
+              <option value="3600000"> 1hr </option>
+              <option value="7200000"> 2hr </option>
             </select>
           </li>
-          <li class="spaced">Notifications lifetime</li>
+          <li class="spaced">Notification lifetime</li>
           <li>
             <select id="notifLifetime">
               <option value="0"> no notifications </option>
-              <option value="10000"> 10sec </option>
-              <option value="30000"> 30sec </option>
-              <option value="60000"> 1mn </option>
-              <option value="300000"> 5mn </option>
-              <option value="600000"> 10mn </option>
+              <option value="10000"> 10s </option>
+              <option value="30000"> 30s </option>
+              <option value="60000"> 1min </option>
+              <option value="300000"> 5min </option>
+              <option value="600000"> 10min </option>
               <option value="-1"> no limit </option>
             </select>
           </li>
           <br>
           <li class="spaced">
-            <input id="notifSound" type="checkbox"> Enable notifications sound
+            <input id="notifSound" type="checkbox"> Enable notification sound
           </li>
           <li class="spaced">
             <input id="inAppNav" type="checkbox"> Use in-app navigation
@@ -72,6 +72,6 @@
         </div>
       </a>
     </div>
-    
+
   </body>
 </html>
