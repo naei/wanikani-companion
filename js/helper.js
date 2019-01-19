@@ -6,6 +6,7 @@ function WkUserData(){
   this.inAppNavigation = true;
   this.expandInfoPanel = true;
   this.hide0Badge = false;
+  this.updateOnLoad = false;
   this.notifSound = false;
 
   this.username = "Mysterious Unknown";
@@ -22,7 +23,7 @@ function WkUserData(){
 }
 
 // save the local user data
-function setWkUserData(wkUserData, callback){
+function setWkUserData(wkUserData, callback) {
   // save the data into the local storage
   localStorage.wkUserData = JSON.stringify(wkUserData);
   // ... and sync it with the current Chrome account

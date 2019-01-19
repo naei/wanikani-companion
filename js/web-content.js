@@ -2,7 +2,7 @@ window.onload = function() {
 
   chrome.storage.sync.get("wkUserData", function (obj) {
     // review & lessons quiz: auto-expand the "item info" panel
-    if (obj.wkUserData.expandInfoPanel === true){
+    if (obj.wkUserData.expandInfoPanel === true) {
       if (document.getElementById('reviews') != null || document.getElementById('lessons') != null) {
         var observer = new WebKitMutationObserver(function(mutations) {
           mutations.forEach(function(mutation) {
@@ -26,6 +26,10 @@ window.onload = function() {
         );
       }
     }
+
+    //Send a message to background.js to restart loopRequestUserData (and update wkUserData)
+    if (obj.wkUserData.updateOnLoad === true)
+      chrome.runtime.sendMessage("wkRestartLoop");
   });
 
   // hide the alert messages (ex: if the user is already logged)
@@ -33,7 +37,4 @@ window.onload = function() {
   if (isError.length == 1) {
     isError[0].style.display='none';
   }
-
-  //Send a message to background.js to restart loopRequestUserData (and update wkUserData)
-  chrome.runtime.sendMessage("wkRestartLoop");
 }
