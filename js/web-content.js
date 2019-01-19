@@ -2,7 +2,7 @@ window.onload = function() {
 
   chrome.storage.sync.get("wkUserData", function (obj) {
     // review & lessons quiz: auto-expand the "item info" panel
-    if (obj.wkUserData.expandInfoPanel === true) {
+    if (obj.wkUserData.expandInfoPanel === true){
       if (document.getElementById('reviews') != null || document.getElementById('lessons') != null) {
         var observer = new WebKitMutationObserver(function(mutations) {
           mutations.forEach(function(mutation) {
@@ -18,9 +18,9 @@ window.onload = function() {
           });
         });
         observer.observe(
-          document.getElementById('answer-form'),
+          document.getElementById('answer-form'), 
           {
-              attributes: true,
+              attributes: true, 
               subtree: true
           }
         );

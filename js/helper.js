@@ -23,7 +23,7 @@ function WkUserData(){
 }
 
 // save the local user data
-function setWkUserData(wkUserData, callback) {
+function setWkUserData(wkUserData, callback){
   // save the data into the local storage
   localStorage.wkUserData = JSON.stringify(wkUserData);
   // ... and sync it with the current Chrome account

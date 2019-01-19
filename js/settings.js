@@ -34,11 +34,11 @@ window.onload = function() {
       setWkUserData(wkUserData, function() {
         window.location.replace("/html/home.html");
       });
-
+    
     // a new key has been entered: save
     } else if (key != wkUserData.userPublicKey){
-
-      getApiData(key, "user-information", function(obj) {
+        
+      getApiData(key, "user-information", function(obj){
 
         // the key is not valid
         if (obj.user_information === undefined){

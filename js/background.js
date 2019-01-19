@@ -1,9 +1,9 @@
 window.onload = function() {
-
+  
   var loopRequestId;
 
   // initialize the badge color
-  chrome.browserAction.setBadgeBackgroundColor({color:'#ff00aa'});
+  chrome.browserAction.setBadgeBackgroundColor({color:'#ff00aa'}); 
 
   // check that there is a Chrome sync value
   chrome.storage.sync.get("wkUserData", function (obj) {
@@ -18,7 +18,7 @@ window.onload = function() {
     }
     loopRequestUserData();
   });
-
+  
   // update data every x milliseconds
   function loopRequestUserData(notify = true) {
     var wkUserData = JSON.parse(localStorage.wkUserData);
@@ -52,7 +52,7 @@ window.onload = function() {
   chrome.webRequest.onHeadersReceived.addListener(
       function(details) {
           var headers = details.responseHeaders;
-          for (var i = 0; i < headers.length; ++i) {
+          for (var i = 0; i < headers.length; ++i) { 
             if (headers[i].name == 'X-Frame-Options') {
                 headers.splice(i, 1);
                 break;
