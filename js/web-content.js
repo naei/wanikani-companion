@@ -18,9 +18,9 @@ window.onload = function() {
           });
         });
         observer.observe(
-          document.getElementById('answer-form'), 
+          document.getElementById('answer-form'),
           {
-              attributes: true, 
+              attributes: true,
               subtree: true
           }
         );
@@ -33,4 +33,7 @@ window.onload = function() {
   if (isError.length == 1) {
     isError[0].style.display='none';
   }
+
+  //Send a message to background.js to restart loopRequestUserData (and update wkUserData)
+  chrome.runtime.sendMessage("wkRestartLoop");
 }
