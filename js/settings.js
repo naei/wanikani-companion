@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
 
   var wkUserData = getWkUserData();
 
@@ -12,7 +12,7 @@ window.onload = function() {
   document.getElementById('hide0Badge').checked = wkUserData.hide0Badge == true ? true : false;
 
   // action when settings are saved
-  document.getElementById('save').onclick = function() {
+  document.getElementById('save').onclick = async function ()  {
 
     document.querySelector(".error").style.display = 'none';
     document.querySelector(".info").style.display = 'inline';
@@ -22,6 +22,7 @@ window.onload = function() {
     // the key is empty or didn't change: do not save
     if (key == "" || key == wkUserData.userPublicKey) {
 
+      console.log('key is wrong');
       wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
       wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
       wkUserData.notifSound = (document.getElementById('notifSound').checked) ? true : false;
@@ -29,37 +30,40 @@ window.onload = function() {
       wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
       wkUserData.hide0Badge = (document.getElementById('hide0Badge').checked) ? true : false;
 
-      setWkUserData(wkUserData, function() {
+      setWkUserData(wkUserData, function () {
         window.location.replace("/html/home.html");
       });
-    
-    // a new key has been entered: save
-    } else if (key != wkUserData.userPublicKey){
-        
-      getApiData(key, "user-information", function(obj){ 
 
-        // the key is not valid
-        if (obj.user_information === undefined){
-          document.querySelector(".error").style.display = 'inline';
-          document.querySelector(".info").style.display = 'none';
+      // a new key has been entered: save
+    } else if (key != wkUserData.userPublicKey) {
+
+      console.log('key seems right');
+      // getApiData(key, "user-information", function(obj){ 
+      let result = await getApiv2Data(key, 'user');
+      // the key is not valid
+      if (result.object === undefined) {
+        document.querySelector(".error").style.display = 'inline';
+        document.querySelector(".info").style.display = 'none';
 
         // the key is valid
-        } else { 
-          wkUserData.userPublicKey = document.getElementById('apiKey').value;
-          wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
-          wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
-          wkUserData.notifSound = (document.getElementById('notifSound').checked) ? true : false;
-          wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
-          wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
-          wkUserData.hide0Badge = (document.getElementById('hide0Badge').checked) ? true : false;
+      } else {
 
-          setWkUserData(wkUserData, function() {
-            requestUserData(false, function(){
-              window.location.replace("/html/home.html");
-            });
-          });
-        }
-      });
+        console.log('got it, saving');
+        wkUserData.userPublicKey = document.getElementById('apiKey').value;
+        wkUserData.refreshInterval = document.getElementById('refreshInterval').value;
+        wkUserData.notifLifetime = document.getElementById('notifLifetime').value;
+        wkUserData.notifSound = (document.getElementById('notifSound').checked) ? true : false;
+        wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
+        wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
+        wkUserData.hide0Badge = (document.getElementById('hide0Badge').checked) ? true : false;
+
+        setWkUserData(wkUserData, function () {
+          // requestUserData(false, function () {
+            window.location.replace("/html/home.html");
+          // });
+        });
+      }
+      // });
     }
   }
 }

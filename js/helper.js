@@ -48,6 +48,17 @@ function getApiData(publicKey, type, callback) {
   xhr.send();
 }
 
+async function getApiv2Data(token, type) {
+
+  return fetch(`https://api.wanikani.com/v2/${type}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(res => res.json())
+
+}
+
 // get a human readable value of the remaning time before the [reviewDate]
 function parseRemainingTime(reviewDate) {
   if (reviewDate){
