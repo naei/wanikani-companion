@@ -16,15 +16,17 @@ window.onload = function() {
 
   // display Gravatar image (if exist)
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", 'http://www.gravatar.com/avatar/' + wkUserData.gravatar + '?d=404', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        document.getElementById('gravatar').src = 'http://www.gravatar.com/avatar/' + wkUserData.gravatar;
+  if(wkUserData.gravatar != ""){
+    xhr.open("GET", 'http://www.gravatar.com/avatar/' + wkUserData.gravatar + '?d=404', true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          document.getElementById('gravatar').src = 'http://www.gravatar.com/avatar/' + wkUserData.gravatar;
+        }
       }
     }
+    xhr.send();
   }
-  xhr.send();
 
   // when the user click on a link, it redirect the url to the web-container page or a new Chrome tab (depends on user settings)
   var inApp = wkUserData.inAppNavigation;

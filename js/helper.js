@@ -1,5 +1,5 @@
 // initialize the local object for user data
-function WkUserData(){
+function WkUserData() {
   this.userPublicKey = "";
   this.refreshInterval = 900000;
   this.notifLifetime = 10000;
@@ -22,30 +22,18 @@ function WkUserData(){
 }
 
 // save the local user data
-function setWkUserData(wkUserData, callback){
+function setWkUserData(wkUserData, callback) {
   // save the data into the local storage
   localStorage.wkUserData = JSON.stringify(wkUserData);
   // ... and sync it with the current Chrome account
-  chrome.storage.sync.set({'wkUserData': wkUserData});
+  chrome.storage.sync.set({ 'wkUserData': wkUserData });
 
   if (callback) callback();
 }
 
 // get the local user data as an object
-function getWkUserData(){
+function getWkUserData() {
   return JSON.parse(localStorage.wkUserData);
-}
-
-// get the user data via the WaniKani API
-function getApiData(publicKey, type, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://www.wanikani.com/api/user/" + publicKey + "/" + type, true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4) {
-      callback(JSON.parse(xhr.responseText));
-    }
-  }
-  xhr.send();
 }
 
 async function getApiv2Data(token, type) {
@@ -61,9 +49,10 @@ async function getApiv2Data(token, type) {
 
 // get a human readable value of the remaning time before the [reviewDate]
 function parseRemainingTime(reviewDate) {
-  if (reviewDate){
+  if (reviewDate) {
     var now = moment();
-    var review = moment(new Date(reviewDate*1000));
+    // var review = moment(new Date(new Date() * 1000));
+    var review = moment(reviewDate)
     return review.from(now);
   }
   // [reviewDate] is null when the user hasn't done any lesson yet
@@ -71,19 +60,20 @@ function parseRemainingTime(reviewDate) {
 }
 
 // update the local user data from the JSON data returned from the WaniKani API
-function updateWkUserData(jsonUserData, type, callback){
+function updateWkUserData(userData, currentLessonCount, currentReviewCount, nextReviewTime) {
 
   var wkUserData = JSON.parse(localStorage.wkUserData);
 
-  wkUserData.username = jsonUserData.user_information.username;
-  wkUserData.gravatar = jsonUserData.user_information.gravatar;
-  wkUserData.level = jsonUserData.user_information.level;
-  wkUserData.title = jsonUserData.user_information.title;
+  wkUserData.username = userData.username;
+  wkUserData.gravatar = "";
+  wkUserData.level = userData.level;
+  wkUserData.title = "Turtles"; // api v2 doesnt have that anymore
 
-  if (type == "study-queue") {
-    wkUserData.nbLessons = jsonUserData.requested_information.lessons_available;
-    wkUserData.nbReviews = jsonUserData.requested_information.reviews_available;
-    wkUserData.nextReview = parseRemainingTime(jsonUserData.requested_information.next_review_date);
+  if (currentLessonCount !== undefined && currentReviewCount !== undefined) {
+    wkUserData.nbLessons = currentLessonCount;
+    wkUserData.nbReviews = currentReviewCount;
+
+    wkUserData.nextReview = parseRemainingTime(nextReviewTime);
 
   } else if (type == "srs-distribution") {
     wkUserData.srsNbApprentice = jsonUserData.requested_information.apprentice.total;
@@ -95,66 +85,59 @@ function updateWkUserData(jsonUserData, type, callback){
 
   setWkUserData(wkUserData);
 
-  if (callback) callback();
 }
 
 // request the data to Wanikani API, display notifications and save local data
-function requestUserData(notify, callback) {
+async function requestUserData(notify) {
 
   var currentData = getWkUserData();
 
   // update data and display notifications
   if (currentData.userPublicKey != "") {
 
-    // get lessons and reviews data
-    getApiData(currentData.userPublicKey, "study-queue", function(userData){
+    let userData = await getApiv2Data(currentData.userPublicKey, 'user');
+    let summaryData = await getApiv2Data(currentData.userPublicKey, 'summary')
 
-      var nbReviews = userData.requested_information.reviews_available;
-      var nbLessons = userData.requested_information.lessons_available;
+    let nbReviews = getCurrentReviewCount(summaryData);
+    let nbLessons = getCurrentLessonCount(summaryData);
+    let nextReviewTime = getNextReviewTime(summaryData);
 
-      // display desktop notifications
-      if (notify === true && currentData.refreshInterval != 0){
-          var notified = false;
-          if (nbReviews > 0 && nbReviews != currentData.nbReviews) {
-            createNotification("You have " + nbReviews +" reviews available.", "https://www.wanikani.com/review", "reviews");
-            notified = true;
-          }
-          //if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
-          if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
-            createNotification("You have " + nbLessons +" lessons available.", "https://www.wanikani.com/lesson", "lessons");
-            notified = true;
-          }
-          // play notification sound
-          if (notified === true && currentData.notifSound === true){
-            var sound = new Audio('/snd/notification.mp3');
-            sound.play();
-          }
+    // display desktop notifications
+    if (notify === true && currentData.refreshInterval != 0) {
+      var notified = false;
+      if (nbReviews > 0 && nbReviews != currentData.nbReviews) {
+        createNotification("You have " + nbReviews + " reviews available.", "https://www.wanikani.com/review", "reviews");
+        notified = true;
       }
-
-      // update badge text and title
-      var total = nbReviews+nbLessons;
-      if (total == 0 && currentData.hide0Badge) {
-        chrome.browserAction.setBadgeText({text:""});
-      } else {
-        chrome.browserAction.setBadgeText({text:total.toString()});
+      //if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
+      if (nbLessons > 0 && nbLessons != currentData.nbLessons) {
+        createNotification("You have " + nbLessons + " lessons available.", "https://www.wanikani.com/lesson", "lessons");
+        notified = true;
       }
-      chrome.browserAction.setTitle({title: "WaniKani Companion\n" + "Lesson(s): " + nbLessons + "\n" + "Review(s): " + nbReviews});
-      
-      // save study data
-      updateWkUserData(userData, "study-queue", function(){
-        // get the srs distribution data
-        getApiData(currentData.userPublicKey, "srs-distribution" ,function(userData){
-          // save srs distribution data
-          updateWkUserData(userData, "srs-distribution", function(){ if (callback) callback(); });
-        });
-      });
+      // play notification sound
+      if (notified === true && currentData.notifSound === true) {
+        var sound = new Audio('/snd/notification.mp3');
+        sound.play();
+      }
+    }
 
-    });
+    // update badge text and title
+    var total = nbReviews + nbLessons;
+    if (total == 0 && currentData.hide0Badge) {
+      chrome.browserAction.setBadgeText({ text: "" });
+    } else {
+      chrome.browserAction.setBadgeText({ text: total.toString() });
+    }
+    chrome.browserAction.setTitle({ title: "WaniKani Companion\n" + "Lesson(s): " + nbLessons + "\n" + "Review(s): " + nbReviews });
+
+    // save study data
+    updateWkUserData(userData.data, nbLessons, nbReviews, nextReviewTime);
+   
   }
 }
 
 // create a HTML notification
-function createNotification(body, url, tag){
+function createNotification(body, url, tag) {
 
   var notification = new Notification('WaniKani Companion', {
     icon: '/img/wanikani/icon.png',
@@ -162,15 +145,56 @@ function createNotification(body, url, tag){
     tag: tag
   });
 
-  notification.onclick = function() {
+  notification.onclick = function () {
     window.open(url);
   }
 
   // vanish the notifications after [notifLifetime] ms
   // if [notifLifetime] == -1, the notification stay until the user close it
   if (getWkUserData().notifLifetime != -1) {
-    notification.onshow = function() {
-      window.setTimeout(function() { notification.close() }, getWkUserData().notifLifetime);
+    notification.onshow = function () {
+      window.setTimeout(function () { notification.close() }, getWkUserData().notifLifetime);
     }
+  }
+}
+
+function getCurrentLessonCount(summary) {
+  if (summary.data.lessons) {
+    let currentlyAvailableReviews = summary.data.lessons.filter((l) => new Date(l.available_at) < new Date())
+    var currentlyAvailableReviewsCount = 0;
+    currentlyAvailableReviews
+      .forEach(lesson => {
+        currentlyAvailableReviewsCount += lesson.subject_ids.length;
+      });
+    return currentlyAvailableReviewsCount;
+  } else {
+    return 0;
+  }
+}
+
+function getCurrentReviewCount(summary) {
+  if (summary.data.reviews) {
+    let currentlyAvailableReviews = summary.data.reviews.filter((r) => new Date(r.available_at) < new Date())
+    var currentlyAvailableReviewsCount = 0;
+    currentlyAvailableReviews
+      .forEach(review => {
+        currentlyAvailableReviewsCount += review.subject_ids.length;
+      });
+    return currentlyAvailableReviewsCount;
+  } else {
+    return 0;
+  }
+}
+
+function getNextReviewTime(summary) {
+  if (summary.data.reviews) {
+    var nextAvailableReviews = summary.data.reviews.filter((r) => new Date(r.available_at) > new Date());
+    nextAvailableReviews.filter((r) => r.subject_ids.length);
+    if (nextAvailableReviews.length > 0) {
+      return new Date(nextAvailableReviews[0].available_at);
+    }
+    return undefined;
+  } else {
+    return undefined;
   }
 }
