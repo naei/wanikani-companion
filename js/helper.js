@@ -6,6 +6,7 @@ function WkUserData(){
   this.inAppNavigation = true;
   this.expandInfoPanel = true;
   this.hide0Badge = false;
+  this.updateOnLoad = false;
   this.notifSound = false;
 
   this.username = "Mysterious Unknown";

@@ -26,6 +26,10 @@ window.onload = function() {
         );
       }
     }
+
+    //Send a message to background.js to restart loopRequestUserData (and update wkUserData)
+    if (obj.wkUserData.updateOnLoad === true)
+      chrome.runtime.sendMessage("wkRestartLoop");
   });
 
   // hide the alert messages (ex: if the user is already logged)

@@ -20,11 +20,16 @@ window.onload = function() {
   });
   
   // update data every x milliseconds
-  function loopRequestUserData(){
+  function loopRequestUserData(notify = true) {
     var wkUserData = JSON.parse(localStorage.wkUserData);
-    requestUserData(true, function(){
+    requestUserData(notify, function() {
       loopRequestId = window.setTimeout(loopRequestUserData, wkUserData.refreshInterval, true, true);
     });
+  }
+
+  function restartLoop(notify) {
+    window.clearTimeout(loopRequestId);
+    loopRequestId = loopRequestUserData(notify);
   }
 
   // when the update interval is changed, restart loopRequestUserData with the updated interval
@@ -32,11 +37,15 @@ window.onload = function() {
     if ('wkUserData' in changes && loopRequestId !== undefined) {
       var oldValues = changes.wkUserData.oldValue;
       var newValues = changes.wkUserData.newValue;
-      if (newValues.refreshInterval != oldValues.refreshInterval) {
-        window.clearTimeout(loopRequestId);
-        loopRequestId = loopRequestUserData();
-      }
+      if (newValues.refreshInterval != oldValues.refreshInterval)
+        restartLoop(true);
     }
+  });
+
+  // when a wanikani page is loaded, restart loopRequestUserData
+  chrome.runtime.onMessage.addListener(function(request) {
+      if (request === 'wkRestartLoop')
+        restartLoop(false);
   });
 
   // disable 'X-Frame-Options' header to allow inlining pages within an iframe
