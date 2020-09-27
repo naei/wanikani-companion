@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <link href='/css/global.css' rel='stylesheet' type='text/css'>
-    <link href='/css/settings.css' rel='stylesheet' type='text/css'>
+    <link href="/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="/css/settings.css" rel="stylesheet" type="text/css" />
     <script src="/js/lib/moment.min.js"></script>
+    <script src="/js/lib/webtoolkit.md5.js"></script>
     <script src="/js/helper.js"></script>
     <script src="/js/settings.js"></script>
   </head>
@@ -11,7 +12,7 @@
     <!-- Info panel -->
     <div class="info">
       <div>
-        Saving data...<br/>
+        Saving data...<br />
         <div id="loader"></div>
       </div>
     </div>
@@ -26,42 +27,47 @@
 
       <div class="middle">
         <ul>
-          <li>User API key <span class="error"> // This key is not valid</span></li>
-          <li><input id="apiKey" type="text" size="30"/></li>
+          <li>
+            User API V2 key <span class="error"> // This key is not valid</span>
+          </li>
+          <li><input id="apiKey" type="text" size="30" /></li>
+          <li>Email Address (for Gravatar Image)</li>
+          <li><input id="emailAddress" type="email" /></li>
           <li class="spaced">Data refresh interval</li>
           <li>
             <select id="refreshInterval">
-              <option value="300000"> 5mn </option>
-              <option value="900000"> 15mn </option>
-              <option value="1800000"> 30mn </option>
-              <option value="3600000"> 1h </option>
-              <option value="7200000"> 2h </option>
+              <option value="300000">5mn</option>
+              <option value="900000">15mn</option>
+              <option value="1800000">30mn</option>
+              <option value="3600000">1h</option>
+              <option value="7200000">2h</option>
             </select>
           </li>
           <li class="spaced">Notifications lifetime</li>
           <li>
             <select id="notifLifetime">
-              <option value="0"> no notifications </option>
-              <option value="10000"> 10sec </option>
-              <option value="30000"> 30sec </option>
-              <option value="60000"> 1mn </option>
-              <option value="300000"> 5mn </option>
-              <option value="600000"> 10mn </option>
-              <option value="-1"> no limit </option>
+              <option value="0">no notifications</option>
+              <option value="10000">10sec</option>
+              <option value="30000">30sec</option>
+              <option value="60000">1mn</option>
+              <option value="300000">5mn</option>
+              <option value="600000">10mn</option>
+              <option value="-1">no limit</option>
             </select>
           </li>
-          <br>
           <li class="spaced">
-            <input id="notifSound" type="checkbox"> Enable notifications sound
+            <input id="notifSound" type="checkbox" /> Enable notifications sound
           </li>
           <li class="spaced">
-            <input id="inAppNav" type="checkbox"> Use in-app navigation
+            <input id="inAppNav" type="checkbox" /> Use in-app navigation
           </li>
           <li class="spaced">
-            <input id="expandInfoPanel" type="checkbox"> Auto-expand "item info" panel
+            <input id="expandInfoPanel" type="checkbox" /> Auto-expand "item
+            info" panel
           </li>
           <li class="spaced">
-            <input id="hide0Badge" type="checkbox"> Hide badge when no reviews or lessons
+            <input id="hide0Badge" type="checkbox" /> Hide badge when no reviews
+            or lessons
           </li>
         </ul>
       </div>
@@ -72,6 +78,5 @@
         </div>
       </a>
     </div>
-    
   </body>
 </html>
