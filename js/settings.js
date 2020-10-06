@@ -61,6 +61,8 @@ window.onload = function () {
           wkUserData.userPublicKey = document.getElementById("apiKey").value;
           wkUserData.username = obj.data.username;
           wkUserData.level = obj.data.level;
+          wkUserData.emailAddress = document.getElementById("emailAddress").value;
+          wkUserData.gravatar = MD5(document.getElementById("emailAddress").value);
           wkUserData.refreshInterval = document.getElementById(
             "refreshInterval"
           ).value;
