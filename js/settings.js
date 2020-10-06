@@ -10,7 +10,6 @@ window.onload = function() {
   document.getElementById('inAppNav').checked = wkUserData.inAppNavigation == true ? true : false;
   document.getElementById('expandInfoPanel').checked = wkUserData.expandInfoPanel == true ? true : false;
   document.getElementById('hide0Badge').checked = wkUserData.hide0Badge == true ? true : false;
-  document.getElementById('updateOnLoad').checked = wkUserData.updateOnLoad == true ? true : false;
 
   // action when settings are saved
   document.getElementById('save').onclick = function() {
@@ -29,7 +28,6 @@ window.onload = function() {
       wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
       wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
       wkUserData.hide0Badge = (document.getElementById('hide0Badge').checked) ? true : false;
-      wkUserData.updateOnLoad = (document.getElementById('updateOnLoad').checked) ? true : false;
 
       setWkUserData(wkUserData, function() {
         window.location.replace("/html/home.html");
@@ -54,7 +52,6 @@ window.onload = function() {
           wkUserData.inAppNavigation = (document.getElementById('inAppNav').checked) ? true : false;
           wkUserData.expandInfoPanel = (document.getElementById('expandInfoPanel').checked) ? true : false;
           wkUserData.hide0Badge = (document.getElementById('hide0Badge').checked) ? true : false;
-          wkUserData.updateOnLoad = (document.getElementById('updateOnLoad').checked) ? true : false;
 
           setWkUserData(wkUserData, function() {
             requestUserData(false, function(){
