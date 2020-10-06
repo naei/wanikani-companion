@@ -3,8 +3,6 @@
 [![Chrome Web Store URL](https://img.shields.io/chrome-web-store/v/plfjbbakjphlkdpcdpodaedhicoaloph.svg?style=flat-square)](https://chrome.google.com/webstore/detail/wanikani-companion/plfjbbakjphlkdpcdpodaedhicoaloph)
 [![License](https://img.shields.io/github/license/naei/wanikani-companion.svg?style=flat-square)](LICENSE)
 
-###### _2020.09 update: As Wanikani API has moved to v2 with breaking changes and an updated SRS system, this project is now deprecated. If you are a contributor and want to keep this project alive I will be happy to review your PRs and re-publish the original extension. Otherwise, feel free to create your own new extension using these sources! またいつか :wave:_
-
 WaniKani Companion is an extension who integrate all of your WaniKani environnement in your Chrome browser.
 
 ![WaniKani Companion](https://lh6.googleusercontent.com/XPRgWP5wxDrRvQgA_tL2vI4QBTnyegM5tcAvzZaEzPuYb57-2-BtqTFyhoY0u8PUjpa5HTcLxA=s640-h400-e365-rw)
