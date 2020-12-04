@@ -140,7 +140,7 @@ function updateWkUserData(jsonUserData, type, callback) {
   if (type == "summary" && jsonUserData.data) {
     wkUserData.nbLessons = jsonUserData.data.lessons[0].subject_ids.length;
     const nextReviews = jsonUserData.data.reviews.find(
-      rev => rev.subject_ids.length > 0
+      rev => rev.subject_ids.length > 0 && rev.available_at <= moment()
     );
     wkUserData.nbReviews = nextReviews ? nextReviews.subject_ids.length : 0;
     wkUserData.nextReview = parseRemainingTime(
@@ -169,7 +169,7 @@ function requestUserData(notify, callback) {
     // get lessons and reviews data
     getApiData(currentData.userPublicKey, "summary", function (userData) {
       const nextReviews = userData.data
-        ? userData.data.reviews.find(rev => rev.subject_ids.length > 0)
+        ? userData.data.reviews.find(rev => rev.subject_ids.length > 0 && rev.available_at <= moment())
         : null;
       var nbLessons = userData.data
         ? userData.data.lessons[0].subject_ids.length
