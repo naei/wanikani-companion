@@ -7,6 +7,7 @@ function WkUserData() {
   this.expandInfoPanel = true;
   this.hide0Badge = false;
   this.notifSound = false;
+  this.blockOnIncorrect = false;
 
   this.username = "Mysterious Unknown";
   this.emailAddress = "";

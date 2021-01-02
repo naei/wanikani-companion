@@ -14,6 +14,9 @@ window.onload = function () {
     wkUserData.expandInfoPanel == true ? true : false;
   document.getElementById("hide0Badge").checked =
     wkUserData.hide0Badge == true ? true : false;
+  document.getElementById("blockOnIncorrect").checked =
+    wkUserData.blockOnIncorrect == true ? true : false;
+
 
   // action when settings are saved
   document.getElementById("save").onclick = function () {
@@ -41,6 +44,9 @@ window.onload = function () {
         ? true
         : false;
       wkUserData.hide0Badge = document.getElementById("hide0Badge").checked
+        ? true
+        : false;
+      wkUserData.blockOnIncorrect = document.getElementById("blockOnIncorrect").checked
         ? true
         : false;
 
@@ -82,6 +88,9 @@ window.onload = function () {
             ? true
             : false;
           wkUserData.hide0Badge = document.getElementById("hide0Badge").checked
+            ? true
+            : false;
+          wkUserData.blockOnIncorrect = document.getElementById("blockOnIncorrect").checked
             ? true
             : false;
 
