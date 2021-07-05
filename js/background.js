@@ -42,21 +42,14 @@ window.onload = function () {
     }
   });
 
-  // disable 'X-Frame-Options' header to allow inlining pages within an iframe
+  // disable headers in order to allow inlining pages within an iframe
   chrome.webRequest.onHeadersReceived.addListener(
-    function (details) {
-      var headers = details.responseHeaders;
-      for (var i = 0; i < headers.length; ++i) {
-        if (headers[i].name == "X-Frame-Options") {
-          headers.splice(i, 1);
-          break;
-        }
-      }
-      return { responseHeaders: headers };
-    },
+    details => ({
+      responseHeaders: details.responseHeaders.filter(header =>
+          !['content-security-policy','x-frame-options'].includes(header.name.toLowerCase()))
+    }),
     {
-      urls: ["*://*/*"],
+      urls: ['*://www.wanikani.com/*']
     },
-    ["blocking", "responseHeaders"]
-  );
+    ['blocking', 'responseHeaders', 'extraHeaders']);
 };
