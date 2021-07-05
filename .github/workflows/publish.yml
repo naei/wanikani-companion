@@ -1,4 +1,4 @@
-name: Publish
+name: Publish extension
 
 on:
   push:
@@ -10,10 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: trmcnvn/chrome-addon@v2
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Create archive
+        run: zip -r latest.zip * -x ".*"
+
+      - name: Publish to Chrome Web Store
+        uses: trmcnvn/chrome-addon@v2
         with:
           extension: plfjbbakjphlkdpcdpodaedhicoaloph
-          zip: dist/latest.zip
+          zip: latest.zip
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
