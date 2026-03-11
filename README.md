@@ -1,6 +1,10 @@
 ## WaniKani Companion
 
-[![Chrome Web Store URL](https://img.shields.io/chrome-web-store/v/plfjbbakjphlkdpcdpodaedhicoaloph.svg?style=flat-square)](https://chrome.google.com/webstore/detail/wanikani-companion/plfjbbakjphlkdpcdpodaedhicoaloph)
+> **This extension is no longer in development and has been removed from the Chrome Web Store.**
+> The repository remains available and you are free to fork it and continue the project on your own.
+>
+> A huge thank you to everyone who used WaniKani Companion from 2015 to 2026 — it's been a wonderful journey. 頑張ってください! 🎌
+
 [![License](https://img.shields.io/github/license/naei/wanikani-companion.svg?style=flat-square)](LICENSE)
 
 WaniKani Companion is an extension who integrate all of your WaniKani environnement in your Chrome browser.
